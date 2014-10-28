@@ -44,6 +44,7 @@ class php::cli::params {
   $package  = 'php5-cli'
   $provider = undef
   $inifile  = '/etc/php5/cli/php.ini'
+  $conf_dir = '/etc/php5/cli/conf.d'
   $settings = [ ]
 
 }

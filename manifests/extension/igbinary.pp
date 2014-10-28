@@ -57,4 +57,7 @@ class php::extension::igbinary(
     config  => $settings
   }
 
+  php::config::enable { 'igbinary':
+    inifile  => $inifile,
+  }
 }

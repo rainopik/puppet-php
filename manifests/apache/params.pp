@@ -19,6 +19,9 @@
 # [*provider*]
 #   The provider used to install package
 #
+# [*config_dir]
+#   Directory that contains php5 apache configuration files
+#
 # [*inifile*]
 #   The path to the ini php5 apache ini file
 #
@@ -40,11 +43,12 @@
 #
 class php::apache::params {
 
-  $ensure   = $php::params::ensure
-  $package  = 'libapache2-mod-php5'
-  $provider = undef
-  $inifile  = '/etc/php5/apache2/php.ini'
-  $settings = [ ]
+  $ensure       = $php::params::ensure
+  $package      = 'libapache2-mod-php5'
+  $provider     = undef,
+  $inifile      = '/etc/php5/apache2/php.ini',
+  $conf_dir     = '/etc/php5/apache2/conf.d',
+  $settings     = [ ]
 
   $service_name = 'apache2'
 
