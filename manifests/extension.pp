@@ -66,12 +66,21 @@ define php::extension(
 ) {
 
   if $provider == 'pecl' {
-    package { $package:
-      ensure   => $ensure,
-      provider => $provider,
-      source   => $source,
-      pipe     => $pipe;
+    if $pipe {
+      package { $package:
+        ensure   => $ensure,
+        provider => $provider,
+        source   => $source,
+        pipe     => $pipe,
+      }
+    } else {
+      package { $package:
+        ensure   => $ensure,
+        provider => $provider,
+        source   => $source,
+      }
     }
+
   } elsif $provider == 'dpkg' {
     package { $package:
       ensure   => $ensure,
