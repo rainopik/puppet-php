@@ -46,8 +46,17 @@ class php::extension::xdebug::params {
   $ensure      = $php::params::ensure
   $package     = 'php5-xdebug'
   $provider    = undef
-  $install_dir = '/usr/lib/php5/20121212'
+
   $inifile     = "${php::params::config_root_ini}/xdebug.ini"
+
+
+  if versioncmp($::php_version, '5.6') >= 0 {
+    $install_dir = '/usr/lib/php5/20131226'
+  }
+  elsif ($::php_version == '' or versioncmp($::php_version, '5.5') >= 0) {
+    $install_dir = '/usr/lib/php5/20121212'
+  }
+
   $settings    = [
     "set .anon/zend_extension '${install_dir}/xdebug.so'"
   ]

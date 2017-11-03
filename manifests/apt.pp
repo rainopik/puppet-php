@@ -40,7 +40,7 @@ class php::apt(
   if ($dotdeb) {
     # wheezy-php55 requires both repositories to work correctly
     # See: http://www.dotdeb.org/instructions/
-    if $release == 'wheezy-php55' {
+    if ($release == 'wheezy-php55' or $release == 'wheezy-php56') {
       apt::source { 'dotdeb-wheezy':
         location    => $location,
         release     => 'wheezy',
