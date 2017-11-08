@@ -3,6 +3,7 @@
 # Enables an extension configuration file for Debian systems:
 # (creates symlinks in /etc/php5/cli/conf.d and optionally /etc/php5/fpm/conf.d)
 define php::config::enable(
+  $ensure       = present,
   $inifile      = undef,
   $order        = '20',
 ) {
@@ -26,7 +27,10 @@ define php::config::enable(
     $real_symlinks = concat(concat($symlinks, $symlinks_apache), $symlinks_fpm)
 
     file { $real_symlinks:
-      ensure  => link,
+      ensure  => $ensure ? {
+          absent    => absent,
+          default   => link,
+      },
       target  => $inifile,
       require => Php::Config["php-extension-${title}"],
     }
